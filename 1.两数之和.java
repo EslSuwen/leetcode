@@ -5,25 +5,36 @@
  */
 
 // @lc code=start
+/*
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        int result[] = new int[2];
         int i, j;
-        boolean flag = false;
         for (i = 0; i < nums.length; i++) {
-            if (flag)
-                break;
             for (j = i + 1; j < nums.length; j++) {
-                if (flag)
-                    break;
                 if (target == nums[i] + nums[j]) {
-                    result[0] = i;
-                    result[1] = j;
-                    flag = true;
+                    return new int[] { i, j };
                 }
             }
         }
-        return result;
+        return null;
+    }
+}*/
+
+// 两遍哈希表
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            map.put(nums[i], i);
+        }
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement) && map.get(complement) != i) {
+                return new int[] { i, map.get(complement) };
+            }
+        }
+        throw new IllegalArgumentException("No two sum solution");
     }
 }
+
 // @lc code=end
