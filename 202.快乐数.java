@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  * @lc app=leetcode.cn id=202 lang=java
  *
@@ -38,8 +41,28 @@
 // @lc code=start
 class Solution {
     public boolean isHappy(int n) {
-        
+        Set<Integer> seen = new HashSet<>();
+        while (n != 1 && !seen.contains(n)) {
+            seen.add(n);
+            n = getNext(n);
+        }
+        return n == 1;
     }
+
+    private int getNext(int n) {
+        int totalSum = 0;
+        while (n > 0) {
+            int d = n % 10;
+            n = n / 10;
+            totalSum += d * d;
+        }
+        return totalSum;
+    }
+
+    /*
+     * 作者：LeetCode-Solution
+     * 链接：https://leetcode-cn.com/problems/happy-number/solution/kuai-le-shu-by-
+     * leetcode-solution/ 来源：力扣（LeetCode） 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+     */
 }
 // @lc code=end
-
