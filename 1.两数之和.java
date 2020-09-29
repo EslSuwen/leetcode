@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-/*
+/* 双重循环
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         int i, j;
